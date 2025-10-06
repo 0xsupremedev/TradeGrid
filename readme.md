@@ -1,4 +1,5 @@
 # TradeGrid – Hybrid CLOB on Aptos (Monorepo)
+<img width="1864" height="974" alt="image" src="https://github.com/user-attachments/assets/93c5b20f-f0ec-466c-8697-fb59be6c182b" />
 
 TradeGrid is a modern, developer‑oriented hybrid on/off‑chain order book (CLOB) built on Aptos. It marries off‑chain matching (speed) with on‑chain settlement (finality, transparency).
 
