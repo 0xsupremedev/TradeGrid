@@ -1,0 +1,12 @@
+[package]
+name = "tradegrid"
+version = "0.0.1"
+
+[addresses]
+tradegrid = "0x6d6b32bc6e325e42477b4790d117c651a8b1fe8aa9071a065033c993426a9f8e"
+
+[dependencies]
+AptosFramework = { local = "deps/aptos-core/aptos-move/framework/aptos-framework" }
+MoveStdlib = { local = "deps/aptos-core/aptos-move/framework/move-stdlib" }
+
+

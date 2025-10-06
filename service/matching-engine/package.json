@@ -1,0 +1,29 @@
+{
+  "name": "@tradegrid/matching-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "lint": "eslint .",
+    "test": "tsx src/__tests__/matcher.test.ts"
+  },
+  "dependencies": {
+    "fastify": "^4.28.1",
+    "ws": "^8.18.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "@types/ws": "^8.5.10",
+    "eslint": "^9.11.1",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4"
+  }
+}
+
+

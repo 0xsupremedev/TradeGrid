@@ -1,0 +1,21 @@
+{
+  "name": "tradegrid-monorepo",
+  "private": true,
+  "workspaces": [
+    "service/*",
+    "sdk/*",
+    "web"
+  ],
+  "packageManager": "pnpm@9.7.0",
+  "scripts": {
+    "build": "echo no-root-build",
+    "dev": "concurrently -k -n engine,gateway,relayer,web \"pnpm --filter @tradegrid/matching-engine dev\" \"pnpm --filter @tradegrid/gateway dev\" \"pnpm --filter @tradegrid/relayer dev\" \"pnpm --filter @tradegrid/web dev -p 4101\"",
+    "dev:all": "concurrently -k -n chain,engine,gateway,relayer,web \"pnpm aptos:local\" \"pnpm --filter @tradegrid/matching-engine dev\" \"pnpm --filter @tradegrid/gateway dev\" \"pnpm --filter @tradegrid/relayer dev\" \"pnpm --filter @tradegrid/web dev -p 4101\"",
+    "test:integration": "pnpm --filter @tradegrid/matching-engine test && pnpm --filter tests run",
+    "aptos:local": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run_local.ps1",
+    "aptos:reset": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/reset_local.ps1",
+    "aptos:trade": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run_local_trade.ps1"
+  }
+}
+
+

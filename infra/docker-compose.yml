@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  engine:
+    build: ../service/matching-engine
+    ports:
+      - "8080:8080"
+  gateway:
+    build: ../service/gateway
+    environment:
+      - ENGINE_URL=http://engine:8080
+    ports:
+      - "8081:8081"
+    depends_on:
+      - engine
+  relayer:
+    build: ../service/relayer
+    environment:
+      - ENGINE_WS=ws://engine:8080
+      - APTOS_NETWORK=${APTOS_NETWORK}
+      - APTOS_NODE_URL=${APTOS_NODE_URL}
+      - APTOS_PRIVATE_KEY=${APTOS_PRIVATE_KEY}
+      - CONTRACT_ADDRESS=${CONTRACT_ADDRESS}
+      - MAKER_OVERRIDE=${MAKER_OVERRIDE}
+    depends_on:
+      - engine
+  web:
+    build: ../web
+    environment:
+      - NEXT_PUBLIC_ENGINE_URL=${NEXT_PUBLIC_ENGINE_URL:-http://gateway:8081}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - gateway
+
+

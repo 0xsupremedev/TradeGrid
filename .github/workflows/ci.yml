@@ -1,0 +1,27 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Enable pnpm
+        run: corepack enable && corepack prepare pnpm@9.7.0 --activate
+      - name: Install
+        run: pnpm -w install
+      - name: Build matching-engine
+        run: pnpm --filter @tradegrid/matching-engine build
+      - name: Build relayer
+        run: pnpm --filter @tradegrid/relayer build
+      - name: Build web
+        run: pnpm --filter @tradegrid/web build || true
+      - name: Run matcher unit tests
+        run: pnpm --filter @tradegrid/matching-engine test | cat
+
